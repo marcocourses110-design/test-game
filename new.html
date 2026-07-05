@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>رحلة الإيمان — سفر أعمال الرسل</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0e1a2b;
+  --navy-2:#152840;
+  --navy-3:#1c3350;
+  --parchment:#f3e7cd;
+  --parchment-2:#e9dbb8;
+  --gold:#c9a24b;
+  --gold-light:#e7c877;
+  --ink:#3a2a1c;
+  --oxblood:#a5432e;
+  --teal:#2e6f63;
+  --teal-light:#4a9385;
+  --shadow: 0 10px 30px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  min-height:100vh;
+  font-family:'Cairo',sans-serif;
+  color:var(--parchment);
+  background:
+    radial-gradient(1200px 600px at 15% -10%, #1e3554 0%, transparent 60%),
+    radial-gradient(900px 500px at 110% 10%, #23406a 0%, transparent 55%),
+    linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 55%, var(--navy) 100%);
+  overflow-x:hidden;
+  position:relative;
+}
+body::before{
+  content:"";
+  position:fixed; inset:0;
+  background-image: radial-gradient(rgba(233,219,184,.10) 1px, transparent 1px);
+  background-size: 26px 26px;
+  pointer-events:none;
+  z-index:0;
+}
+#app{ position:relative; z-index:1; max-width:900px; margin:0 auto; padding:18px 16px 60px; }
+h1,h2,h3{ font-family:'Amiri', serif; margin:0; }
+.hidden{ display:none !important; }
+
+.hero{ text-align:center; padding:34px 10px 8px; position:relative; }
+.compass{ width:74px; height:74px; margin:0 auto 10px; opacity:.9; animation: spin 40s linear infinite; }
+@media (prefers-reduced-motion: reduce){ .compass{animation:none;} }
+@keyframes spin{ to{ transform:rotate(360deg);} }
+.eyebrow{ letter-spacing:.35em; font-size:12px; color:var(--gold-light); font-weight:700; margin-bottom:6px; }
+.hero h1{ font-size:clamp(28px,6vw,44px); color:var(--parchment); text-shadow: 0 2px 18px rgba(201,162,75,.25); line-height:1.3; }
+.hero .sub{ color:#c9bd9f; font-size:15px; margin-top:10px; max-width:520px; margin-inline:auto; }
+
+.route-wrap{ margin:22px auto 8px; max-width:560px; }
+.route-wrap svg{ width:100%; height:auto; display:block; }
+.route-path{ fill:none; stroke:var(--gold); stroke-width:2; stroke-dasharray:6 8; stroke-linecap:round; animation:sail 6s linear infinite; opacity:.8; }
+@media (prefers-reduced-motion: reduce){ .route-path{animation:none;} }
+@keyframes sail{ to{ stroke-dashoffset:-140; } }
+.route-dot{ fill:var(--gold-light); }
+.route-city{ font-family:'Cairo',sans-serif; font-size:10px; fill:#d8cba4; font-weight:700; }
+
+.grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; margin-top:26px; }
+.card{
+  background: linear-gradient(160deg, var(--parchment) 0%, var(--parchment-2) 100%);
+  color:var(--ink); border-radius:16px; padding:20px 18px; box-shadow:var(--shadow);
+  border:1px solid rgba(201,162,75,.5); cursor:pointer; position:relative; overflow:hidden;
+  transition:transform .18s ease, box-shadow .18s ease; text-align:right;
+}
+.card:hover{ transform:translateY(-4px); box-shadow:0 16px 34px rgba(0,0,0,.5); }
+.card:focus-visible{ outline:3px solid var(--gold-light); outline-offset:3px; }
+.card::after{ content:""; position:absolute; inset:0; background: linear-gradient(120deg, transparent 40%, rgba(201,162,75,.18) 50%, transparent 60%); transform:translateX(-100%); }
+.card:hover::after{ transform:translateX(100%); transition:transform .7s ease; }
+.card .tag{ display:inline-block; font-size:11px; font-weight:800; letter-spacing:.06em; color:var(--parchment); background:var(--navy-3); padding:3px 10px; border-radius:999px; margin-bottom:10px; }
+.card h3{ font-size:20px; color:var(--ink); margin-bottom:6px; }
+.card p{ font-size:13px; color:#5a4a37; line-height:1.7; margin:0 0 10px; }
+.card .meta{ font-size:12px; color:var(--oxblood); font-weight:700; }
+.card .best{ position:absolute; top:14px; left:14px; font-size:11px; color:var(--teal); font-weight:800; }
+
+.section-title{ margin-top:34px; display:flex; align-items:center; gap:10px; color:var(--gold-light); }
+.section-title .line{ flex:1; height:1px; background:linear-gradient(90deg, rgba(201,162,75,.6), transparent); }
+.section-title h2{ font-size:19px; white-space:nowrap; }
+
+.topbar{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:18px; flex-wrap:wrap; }
+.btn-back{ background:none; border:1px solid rgba(233,219,184,.35); color:var(--parchment); border-radius:10px; padding:8px 14px; cursor:pointer; font-family:'Cairo'; font-weight:700; font-size:13px; }
+.btn-back:hover{ background:rgba(233,219,184,.08); }
+.pill{ background:var(--navy-3); border:1px solid rgba(201,162,75,.4); border-radius:999px; padding:6px 14px; font-size:13px; font-weight:700; color:var(--gold-light); display:flex; align-items:center; gap:6px; }
+
+.voyage{ margin: 6px 0 20px; position:relative; height:46px; }
+.voyage svg{ width:100%; height:100%; }
+.voyage-track{ stroke:rgba(233,219,184,.25); stroke-width:2; fill:none; stroke-dasharray:2 8; stroke-linecap:round; }
+.voyage-fill{ stroke:var(--gold); stroke-width:2.5; fill:none; stroke-linecap:round; transition:stroke-dashoffset .5s ease; }
+
+.qcard{ background:linear-gradient(165deg, var(--parchment), var(--parchment-2)); color:var(--ink); border-radius:18px; padding:26px 22px; box-shadow:var(--shadow); border:1px solid rgba(201,162,75,.5); }
+.qcard .qmeta{ display:flex; justify-content:space-between; font-size:12px; color:var(--oxblood); font-weight:800; margin-bottom:10px;}
+.qcard h3{ font-size:clamp(18px,3.4vw,23px); line-height:1.55; color:var(--ink); margin-bottom:18px; }
+
+.options{ display:grid; gap:10px; }
+.opt{ text-align:right; background:#fffdf7; border:1.5px solid #d9c79c; border-radius:12px; padding:13px 16px; font-family:'Cairo'; font-size:15px; font-weight:600; color:var(--ink); cursor:pointer; transition:all .15s ease; }
+.opt:hover:not(:disabled){ border-color:var(--gold); background:#fff8e8; transform:translateX(-2px); }
+.opt:disabled{ cursor:default; }
+.opt.correct{ background:#e4f2e6; border-color:var(--teal); color:#1c4a3f; }
+.opt.wrong{ background:#f7e3df; border-color:var(--oxblood); color:#7a2c1c; }
+.opt.dim{ opacity:.55; }
+
+.explain{ margin-top:16px; padding:14px 16px; background:rgba(46,111,99,.08); border-inline-start:4px solid var(--teal); border-radius:8px; font-size:13.5px; line-height:1.8; color:#33291b; display:none; }
+.explain.show{ display:block; }
+.explain b{ color:var(--teal); }
+.explain .ref{ display:inline-block; margin-top:6px; font-size:12px; color:var(--oxblood); font-weight:800; }
+
+.actions{ display:flex; justify-content:flex-end; margin-top:18px; gap:10px; flex-wrap:wrap; }
+.btn-primary{ background:linear-gradient(160deg, var(--gold-light), var(--gold)); color:#3a2a10; border:none; border-radius:11px; padding:12px 26px; font-family:'Cairo'; font-weight:800; font-size:14px; cursor:pointer; box-shadow:0 6px 16px rgba(201,162,75,.35); }
+.btn-primary:hover{ filter:brightness(1.06); }
+.btn-primary:disabled{ opacity:.4; cursor:not-allowed; }
+.btn-ghost{ background:transparent; border:1.5px solid var(--gold); color:var(--gold-light); border-radius:11px; padding:11px 24px; font-family:'Cairo'; font-weight:800; font-size:14px; cursor:pointer; }
+
+.result{ text-align:center; padding:30px 16px; }
+.result .badge{ width:110px; height:110px; margin:0 auto 14px; border-radius:50%; background:radial-gradient(circle at 35% 30%, var(--gold-light), var(--gold) 60%, #8a6c2e 100%); display:flex; align-items:center; justify-content:center; font-size:44px; box-shadow:0 10px 30px rgba(201,162,75,.4); }
+.result h2{ font-size:26px; color:var(--parchment); margin-bottom:4px;}
+.result .rank{ color:var(--gold-light); font-weight:800; font-size:16px; margin-bottom:18px;}
+.stat-row{ display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:24px; }
+.stat{ background:var(--navy-3); border:1px solid rgba(201,162,75,.3); border-radius:12px; padding:14px 20px; min-width:100px; }
+.stat .n{ font-size:22px; font-weight:800; color:var(--gold-light); }
+.stat .l{ font-size:12px; color:#c9bd9f; margin-top:4px; }
+.result-actions{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+
+.match-grid{ display:flex; gap:14px; }
+.match-col{ flex:1; display:flex; flex-direction:column; gap:10px; }
+.match-item{ background:#fffdf7; border:1.5px solid #d9c79c; border-radius:12px; padding:12px 14px; font-size:13.5px; font-weight:700; color:var(--ink); cursor:pointer; text-align:center; transition:all .15s ease; }
+.match-item:hover{ border-color:var(--gold); }
+.match-item.selected{ background:#fff2cf; border-color:var(--gold); box-shadow:0 0 0 2px var(--gold-light) inset; }
+.match-item.solved{ background:#e4f2e6; border-color:var(--teal); color:#1c4a3f; cursor:default; opacity:.85; }
+.match-item.shake{ animation:shake .35s; border-color:var(--oxblood); background:#f7e3df; }
+@keyframes shake{ 0%,100%{transform:translateX(0);} 25%{transform:translateX(-6px);} 75%{transform:translateX(6px);} }
+
+.order-pool{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:22px; }
+.chip{ background:#fffdf7; border:1.5px solid #d9c79c; border-radius:999px; padding:9px 16px; font-size:13px; font-weight:700; color:var(--ink); cursor:pointer; }
+.chip:hover{ border-color:var(--gold); background:#fff8e8; }
+.chip.used{ opacity:.35; cursor:default; }
+
+.map-wrap{
+  position:relative; width:100%; padding-bottom:56%;
+  border-radius:16px; overflow:hidden;
+  background: radial-gradient(700px 400px at 20% 10%, #17324c 0%, transparent 60%), linear-gradient(160deg,#0d2437,#081726);
+  border:1px solid rgba(201,162,75,.4);
+  box-shadow:var(--shadow);
+  margin-bottom:18px;
+}
+.map-svg{ position:absolute; inset:0; width:100%; height:100%; display:block; }
+.map-route{ fill:none; stroke:rgba(201,162,75,.5); stroke-width:3; stroke-dasharray:8 10; stroke-linecap:round; }
+.map-pins{ position:absolute; inset:0; }
+.pin{ position:absolute; transform:translate(-50%,-100%); display:flex; flex-direction:column; align-items:center; }
+.pin .dot{
+  width:30px; height:30px; border-radius:50%; background:var(--navy-3);
+  border:2px solid rgba(233,219,184,.45); display:flex; align-items:center; justify-content:center;
+  font-weight:800; font-size:13px; color:var(--parchment); box-shadow:0 4px 10px rgba(0,0,0,.4);
+  transition:all .25s ease;
+}
+.pin.next .dot{ animation:pulse 1.4s ease-in-out infinite; border-color:var(--gold-light); }
+@keyframes pulse{ 0%,100%{ box-shadow:0 0 0 0 rgba(231,200,119,.5);} 50%{ box-shadow:0 0 0 8px rgba(231,200,119,0);} }
+.pin.filled .dot{ background:linear-gradient(160deg,var(--gold-light),var(--gold)); color:#3a2a10; border-color:var(--gold); }
+.pin.ok .dot{ background:var(--teal); border-color:var(--teal-light); color:#fff; }
+.pin.bad .dot{ background:var(--oxblood); border-color:#d97757; color:#fff; }
+.pin .label{
+  font-size:10.5px; font-weight:700; background:rgba(14,26,43,.9); color:var(--parchment);
+  padding:3px 7px; border-radius:6px; white-space:nowrap; margin-top:4px; max-width:110px;
+  overflow:hidden; text-overflow:ellipsis; border:1px solid rgba(201,162,75,.35);
+}
+.ship-marker{
+  position:absolute; font-size:24px; transform:translate(-50%,-55%);
+  transition:left .5s ease, top .5s ease; filter:drop-shadow(0 3px 5px rgba(0,0,0,.5));
+  z-index:2;
+}
+@media (prefers-reduced-motion: reduce){ .pin.next .dot{ animation:none; } .ship-marker{ transition:none; } }
+
+.catch-hud{ display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+.hearts{ font-size:18px; letter-spacing:4px; }
+.hearts .dead{ opacity:.25; filter:grayscale(1); }
+.target-pill{ background:var(--navy-3); border:1.5px solid var(--gold); color:var(--gold-light); border-radius:999px; padding:9px 20px; font-weight:800; font-size:14.5px; text-align:center; margin:0 auto 12px; width:fit-content; box-shadow:0 4px 14px rgba(201,162,75,.25); }
+.catch-area{ position:relative; height:380px; border-radius:16px; overflow:hidden; background: linear-gradient(180deg, #12324c 0%, #0d2437 55%, #081726 100%); border:1px solid rgba(201,162,75,.4); box-shadow:var(--shadow); touch-action:none; }
+.catch-area::before{ content:""; position:absolute; left:0; right:0; bottom:0; height:34px; background:linear-gradient(180deg, rgba(46,111,99,0), rgba(46,111,99,.6)); border-top:2px solid rgba(233,219,184,.15); }
+.drop{ position:absolute; transform:translate(-50%,0); background:#fffdf7; border:1.5px solid #d9c79c; border-radius:10px; padding:7px 13px; font-size:13px; font-weight:800; color:var(--ink); cursor:pointer; white-space:nowrap; user-select:none; box-shadow:0 5px 12px rgba(0,0,0,.35); transition:background .12s ease, transform .1s ease; }
+.drop:active{ transform:translate(-50%,0) scale(.92); }
+.drop.wrong-flash{ background:#f7c9be; border-color:var(--oxblood); }
+.pop-score{ position:absolute; font-weight:800; font-size:15px; pointer-events:none; animation:popUp .7s ease forwards; }
+.pop-score.good{ color:#8ff0c4; }
+.pop-score.bad{ color:#ff9d86; }
+@keyframes popUp{ 0%{ transform:translateY(0); opacity:1;} 100%{ transform:translateY(-38px); opacity:0;} }
+.catch-tip{ text-align:center; font-size:12px; color:#a99a76; margin-top:10px; }
+
+.acc{ margin-bottom:12px; border:1px solid rgba(201,162,75,.35); border-radius:12px; overflow:hidden; }
+.acc-head{ background:var(--navy-3); color:var(--gold-light); padding:12px 16px; cursor:pointer; font-weight:800; display:flex; justify-content:space-between; align-items:center; font-size:14px; }
+.acc-head .arrow{ transition:transform .25s ease; }
+.acc-head.open .arrow{ transform:rotate(180deg); }
+.acc-body{ background:rgba(243,231,205,.06); max-height:0; overflow:hidden; transition:max-height .35s ease; }
+.acc-body.open{ max-height:3000px; }
+.acc-body-inner{ padding:14px 16px; }
+.acc-body ul{ margin:0; padding-inline-start:18px; font-size:13.5px; line-height:1.9; color:var(--parchment); }
+.acc-body li{ margin-bottom:10px; }
+.acc-body li b{ color:var(--gold-light); }
+.acc-body .refspan{ color:#d99a7f; font-weight:700; font-size:12px; }
+.pairs-line{ display:flex; justify-content:space-between; gap:10px; padding:7px 0; border-bottom:1px dashed rgba(233,219,184,.15); font-size:13px; }
+.pairs-line b{ color:var(--parchment); }
+.pairs-line span{ color:var(--gold-light); font-weight:700; }
+
+.board-grid{
+  display:grid; grid-template-columns:repeat(6,1fr); grid-template-rows:repeat(6,1fr);
+  gap:4px; aspect-ratio:1; background:#0a1a2b; border-radius:14px; padding:8px;
+  border:1px solid rgba(201,162,75,.4); box-shadow:var(--shadow); margin-top:10px;
+}
+.station{
+  background:linear-gradient(160deg,var(--parchment),var(--parchment-2));
+  border-radius:7px; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  font-size:8.5px; font-weight:800; color:var(--ink); position:relative; padding:2px;
+  text-align:center; overflow:hidden; border:1px solid rgba(201,162,75,.4); line-height:1.15;
+}
+.station.corner{ font-size:9.5px; background:linear-gradient(160deg,var(--gold-light),var(--gold)); }
+.station.char{ background:linear-gradient(160deg,#dfeee0,#c7e2c9); }
+.station.challenge{ background:linear-gradient(160deg,#f3d9cf,#e7bfae); }
+.station .stype{ font-size:11px; }
+.station .tokens{ position:absolute; bottom:1px; display:flex; gap:1px; }
+.station .tokens span{ font-size:10px; }
+.board-center{
+  grid-row:2/6; grid-column:2/6; background:radial-gradient(circle at 40% 30%, #16324c, #0a1a2b);
+  border-radius:10px; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:8px; padding:10px; text-align:center;
+}
+.board-center h3{ color:var(--parchment); font-size:15px; margin:0; }
+.dice-btn{ font-size:34px; background:none; border:none; cursor:pointer; line-height:1; }
+.dice-btn:disabled{ opacity:.4; cursor:not-allowed; }
+.dice-face{ font-size:26px; font-weight:800; color:var(--gold-light); }
+.player-badge{ display:inline-flex; align-items:center; gap:6px; background:var(--navy-3); border:1px solid rgba(201,162,75,.4); border-radius:999px; padding:5px 12px; font-size:12px; font-weight:800; color:var(--gold-light); }
+.scoreboard{ display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+.score-card{ flex:1; min-width:120px; background:var(--navy-3); border:1px solid rgba(201,162,75,.3); border-radius:12px; padding:12px; text-align:center; }
+.score-card.active{ border-color:var(--gold); box-shadow:0 0 0 2px rgba(201,162,75,.3) inset; }
+.score-card .nm{ font-weight:800; color:var(--parchment); font-size:13px; }
+.score-card .co{ color:var(--gold-light); font-weight:800; font-size:18px; margin-top:4px; }
+.event-log{ font-size:12.5px; color:#c9bd9f; min-height:20px; }
+.player-pick{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:20px; }
+.player-pick .chip{ padding:12px 22px; font-size:16px; }
+.player-pick .chip.sel{ background:linear-gradient(160deg,var(--gold-light),var(--gold)); color:#3a2a10; }
+
+.footnote{ text-align:center; color:#8f8465; font-size:12px; margin-top:34px; }
+@media (max-width:480px){
+  .match-grid{ gap:8px; }
+  .match-item{ padding:10px 8px; font-size:12px; }
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+/* ======================= DATA ======================= */
+
+const CATS = [
+  {id:'j1', title:'الرحلة التبشيرية الأولى', tag:'46 - 48 م', desc:'أنطاكية ← قبرص ← بمفيلية ← بيسيدية ← أيقونية ← لسترة ← دربة', icon:'⛵'},
+  {id:'j23', title:'الرحلتان الثانية والثالثة', tag:'50 - 58 م', desc:'سيلا وتيموثاوس ولوقا رفقاء الرحلة، من آسيا إلى أوروبا', icon:'🧭'},
+  {id:'peter', title:'خدمة القديس بطرس الرسول', tag:'أورشليم ← قيصرية', desc:'من عظة الخمسين إلى عماد كرنيليوس', icon:'🔑'},
+  {id:'pb', title:'خدمة فيلبس وبرنابا', tag:'شمامسة ورفقاء الخدمة', desc:'الخصي الحبشي، وبرنابا "ابن الوعظ"', icon:'🕊️'},
+  {id:'mix', title:'تحدي شامل', tag:'كل الأبواب معًا', desc:'اختبر معلوماتك في كل ما سبق دفعة واحدة', icon:'🏆'},
+];
+
+const Q = {
+j1:[
+ {q:'من رافق بولس الرسول في رحلته التبشيرية الأولى؟', o:['برنابا ويوحنا مرقس','سيلا وتيموثاوس','لوقا وتيطس','أكيلا وبرسكيلا'], a:0, ex:'رافق بولسَ برنابا، وكان معهما يوحنا الملقب مرقس خادمًا لهما، حتى فارقهما في بمفيلية.', ref:'أع 13:5'},
+ {q:'كم استغرقت الرحلة التبشيرية الأولى؟', o:['سنة واحدة','من 46 إلى 48م (نحو 4 سنوات)','عشر سنوات','ستة أشهر'], a:1, ex:'استغرقت الرحلة الأولى نحو أربع سنوات، من سنة 46م إلى 48م.', ref:'أع 13-14'},
+ {q:'من أي ميناء أبحر بولس وبرنابا إلى قبرص؟', o:['يافا','قيصرية','سلوكية','كنخريا'], a:2, ex:'ذهبا برًا إلى سلوكية، وهي ميناء أنطاكية، ثم أبحرا منها إلى قبرص.', ref:'أع 13:4'},
+ {q:'ما هي أول مدينة وصلها الرسولان في جزيرة قبرص؟', o:['بافوس','سلاميس','كيتيوم','أماثوس'], a:1, ex:'سلاميس كانت العاصمة الشرقية لقبرص، وأول محطة لهما، وهي مسقط رأس برنابا.', ref:'أع 13:5'},
+ {q:'من هو الساحر الذي أُصيب بالعمى في بافوس؟', o:['سيمون الساحر','عليم الساحر (باريشوع)','أسكليبيوس','ديماس'], a:1, ex:'حاول عليم الساحر مقاومة كرازة بولس، فضرب بالعمى بأمر الروح القدس.', ref:'أع 13:6-11'},
+ {q:'من هو الوالي الروماني الذي آمن في بافوس؟', o:['فيلكس','فستوس','سرجيوس بولس','غاليون'], a:2, ex:'آمن الوالي سرجيوس بولس بعدما رأى ما جرى لعليم الساحر وسمع تعليم الرسول.', ref:'أع 13:12'},
+ {q:'من أين بدأ لوقا الإنجيلي يُطلق على "شاول" اسم "بولس"؟', o:['من دمشق','من بافوس','من أنطاكية','من أورشليم'], a:1, ex:'من مدينة بافوس بدأ سفر الأعمال يستخدم اسم "بولس" بدلًا من "شاول".', ref:'أع 13:9'},
+ {q:'بأي مرض أُصيب بولس في برجة بمفيلية؟', o:['الحمى القرمزية','حمى الملاريا','الطاعون','لدغة عقرب'], a:1, ex:'انتشرت الأمراض في تلك المنطقة، وأصيب بولس بحمى الملاريا، وقد أشار لذلك في رسالته لغلاطية.', ref:'غلا 4:13'},
+ {q:'من الذي فارق بولس وبرنابا في بمفيلية وعاد إلى أورشليم؟', o:['يوحنا مرقس','تيموثاوس','سيلا','تيطس'], a:0, ex:'فارقهما يوحنا مرقس عند بمفيلية، إما بسبب مرض أو ظروف خاصة بوالدته.', ref:'أع 13:13'},
+ {q:'في أي مدينة ألقى بولس أول عظة مسجّلة له؟', o:['لسترة','أيقونية','أنطاكية بيسيدية','دربة'], a:2, ex:'في مجمع أنطاكية بيسيدية سرد بولس تاريخ بني إسرائيل حتى المسيح في أول عظة له.', ref:'أع 13:16-41'},
+ {q:'في أي مدينة شُفي مقعدٌ منذ ولادته فظنّ الأهالي بولس وبرنابا آلهة؟', o:['دربة','أيقونية','لسترة','أتالية'], a:2, ex:'شفى بولس مقعدًا في لسترة، فحسبهم الجمع آلهة نزلت في هيئة بشر.', ref:'أع 14:8-13'},
+ {q:'بأي اسمين لقّب أهل لسترة بولس وبرنابا؟', o:['زفس وهرمس','أبولو وأرتميس','كرونوس وهيرا','بوسيدون وأثينا'], a:0, ex:'دعوا برنابا "زفس" وبولس "هرمس" لأنه كان المتكلم، فمزّق الرسولان ثيابهما رفضًا لهذا التجديف.', ref:'أع 14:12-14'},
+ {q:'في أي مدينة رُجم بولس وتُرك خارج السور ظانّين أنه مات؟', o:['أيقونية','لسترة','دربة','بافوس'], a:1, ex:'حرّض يهود من أنطاكية وأيقونية الجموع فرجموا بولس في لسترة، وقد ذكر هذه الحادثة في رسالته الثانية إلى كورنثوس.', ref:'٢كو 11:23-30'},
+ {q:'من التلميذة التي يذكر التقليد أنها آمنت ببولس في أيقونية؟', o:['ليديا','تكلا','فيبي','دركة'], a:1, ex:'يذكر التقليد الكنسي أن القديسة تكلا كانت من أهل أيقونية وآمنت بكرازة بولس.', ref:'تقليد كنسي'},
+ {q:'أين انعقد المجمع الرسولي الأول الذي ناقش قضية ختان الأمم؟', o:['أنطاكية','أورشليم','قبرص','دمشق'], a:1, ex:'انعقد المجمع في أورشليم سنة 49-50م برئاسة يعقوب أسقفها، وقرر عدم إلزام الأمم بالناموس.', ref:'أع 15:1-29'},
+],
+j23:[
+ {q:'من رافق بولس في رحلته التبشيرية الثانية؟', o:['برنابا ويوحنا مرقس','سيلا وتيموثاوس ولوقا','أكيلا وبرسكيلا فقط','تيطس وأبلوس'], a:1, ex:'رافقه سيلا من البداية، ثم انضم تيموثاوس في لسترة، ولوقا في ترواس.', ref:'أع 15:40 - 16:10'},
+ {q:'كم ميلًا قطع بولس تقريبًا في رحلته التبشيرية الثانية برًا وبحرًا؟', o:['10 آلاف ميل','32 ألف ميل','5 آلاف ميل','50 ألف ميل'], a:1, ex:'تُقدَّر المسافة التي قطعها بولس في هذه الرحلة بنحو 32 ألف ميل.', ref:'أع 15:36 - 18:22'},
+ {q:'ما سبب افتراق بولس وبرنابا قبيل الرحلة الثانية؟', o:['خلاف مالي','خلاف بسبب يوحنا مرقس','خلاف عقائدي','لم يفترقا'], a:1, ex:'أراد برنابا اصطحاب مرقس مجددًا، فرفض بولس لأنه فارقهما في الرحلة الأولى، فحدثت مغاضبة بينهما.', ref:'أع 15:37-39'},
+ {q:'إلى أين توجّه برنابا بصحبة مرقس بعد الافتراق؟', o:['آسيا','قبرص','مكدونية','كريت'], a:1, ex:'أقلع برنابا مع مرقس إلى قبرص، موطن برنابا الأصلي.', ref:'أع 15:39'},
+ {q:'في أي مدينة انضمّ تيموثاوس إلى فريق خدمة بولس؟', o:['دربة','لسترة','أيقونية','ترواس'], a:1, ex:'في لسترة استغل بولس طاقة تيموثاوس الشاب الذي كانت جدته لوئيس وأمه أفنيكي قد ربّتاه على التقوى.', ref:'أع 16:1'},
+ {q:'لماذا ختن بولس تيموثاوس قبل أخذه في الخدمة؟', o:['لأن الناموس ألزمه','من أجل اليهود، ليدخل معه مجامعهم','لأنه كان مريضًا','لا سبب مذكور'], a:1, ex:'كان أبوه يونانيًا فلم يكن مختونًا، فختنه بولس مراعاةً لليهود الذين في تلك النواحي.', ref:'أع 16:3'},
+ {q:'من الذي منع بولس ورفقاءه من الكرازة في إقليم آسيا؟', o:['والي المدينة','الروح القدس','مجمع اليهود','الإمبراطور الروماني'], a:1, ex:'منعهم الروح القدس أن يتكلموا بالكلمة في آسيا، إذ كانت خطة الله تقودهم نحو أوروبا.', ref:'أع 16:6'},
+ {q:'من ظهر لبولس في رؤيا ليلية في ترواس؟', o:['ملاك بأجنحة','رجل مكدوني','النبي إشعياء','الرب يسوع مباشرة'], a:1, ex:'رأى بولس في الرؤيا رجلًا مكدونيًا يطلب منه العبور لمعونتهم، ففهمها دعوة للكرازة في أوروبا.', ref:'أع 16:9'},
+ {q:'في أي مدينة انضم لوقا الإنجيلي إلى رحلة بولس؟', o:['فيلبي','ترواس','أثينا','كورنثوس'], a:1, ex:'في ترواس انضم لوقا إلى الرحلة، ومنذ ذلك الموضع يبدأ استخدام ضمير "نحن" في سفر الأعمال.', ref:'أع 16:10'},
+ {q:'كم استغرقت خدمة بولس في أفسس تقريبًا خلال رحلته الثالثة؟', o:['شهر واحد','سنة واحدة','سنتان وثلاثة أشهر','خمس سنوات'], a:2, ex:'استقر بولس في أفسس مدة سنتين وثلاثة أشهر، وهي أطول فترة قضاها في مدينة واحدة أثناء خدمته.', ref:'أع 19:8-10 وأع 18:23'},
+ {q:'أي ثلاث مقاطعات رومانية أساسية بشّر فيها بولس في هاتين الرحلتين؟', o:['مصر - آسيا - اليونان','مكدونية - أخائية - آسيا','فلسطين - سوريا - قبرص','إيطاليا - إسبانيا - غالية'], a:1, ex:'ركّزت خدمة بولس على ثلاث مقاطعات رومانية رئيسية: مكدونية وأخائية وآسيا.', ref:'أع 16:9-12، 19:1'},
+ {q:'من هي أول مؤمنة مذكورة في أوروبا، وفي أي مدينة؟', o:['ليديا في فيلبي','ديونيسيوس في أثينا','فيبي في كنخريا','ياسون في تسالونيكي'], a:0, ex:'ليديا بائعة الأرجوان في فيلبي من أوائل من آمنوا في أوروبا واستضافت بولس ورفقاءه.', ref:'أع 16:14-15'},
+ {q:'إلى أي مدينتين كتب بولس رسالتيه الأولى والثانية في نهاية الرحلة الثانية؟', o:['كورنثوس وأفسس','تسالونيكي (الأولى والثانية)','غلاطية وكولوسي','رومية وفيلبي'], a:1, ex:'كتب بولس رسالتيه الأولى والثانية إلى أهل تسالونيكي في تلك الفترة (نحو 51-52م).', ref:'١تس، ٢تس'},
+],
+peter:[
+ {q:'أين ألقى بطرس عظته الأولى التي آمن على إثرها نحو 3000 نفس؟', o:['أنطاكية','أورشليم يوم الخمسين','قيصرية','السامرة'], a:1, ex:'بعد حلول الروح القدس يوم الخمسين، وقف بطرس وكرز، فآمن نحو ثلاثة آلاف نفس.', ref:'أع 2:14-41'},
+ {q:'كم آمن بعد عظة بطرس الثانية في الهيكل؟', o:['500 نفس','5000 نفس','1000 نفس','200 نفس'], a:1, ex:'عقب شفاء المقعد عند باب الهيكل، ألقى بطرس عظته الثانية فآمن نحو خمسة آلاف نفس.', ref:'أع 3-4'},
+ {q:'من شفاه بطرس عند "باب الجميل" في الهيكل؟', o:['رجل أعمى منذ الولادة','مقعد كان يستعطي منذ 40 سنة','أبرص','مفلوج منذ 8 سنوات'], a:1, ex:'شفى بطرس ويوحنا رجلًا مقعدًا منذ أربعين سنة كان يُوضع يوميًا عند باب الجميل ليستعطي.', ref:'أع 3:1-10'},
+ {q:'من هما اللذان اختلسا من ثمن حقلهما وكذبا على الروح القدس؟', o:['سيمون وطابيثا','حنانيا وسفيرة','أكيلا وبرسكيلا','زكريا وأليصابات'], a:1, ex:'كذب حنانيا وامرأته سفيرة على الروح القدس في أمر ثمن الحقل، فعوقبا بالموت الفوري.', ref:'أع 5:1-11'},
+ {q:'من حاول شراء موهبة وضع الأيدي بالمال في السامرة؟', o:['سيمون الساحر','عليم الساحر','بارتيماوس','ألكسندروس'], a:0, ex:'طلب سيمون الساحر أن يشتري بالمال قدرة منح الروح القدس، فانتهره بطرس بشدة.', ref:'أع 8:9-24'},
+ {q:'من الذي شفاه بطرس في مدينة لدة بعدما كان مقعدًا 8 سنوات؟', o:['إينياس','طابيثا','كرنيليوس','بوبليوس'], a:0, ex:'شفى بطرس في لدة رجلًا اسمه إينياس كان مضطجعًا على فراشه مقعدًا منذ ثماني سنوات.', ref:'أع 9:32-35'},
+ {q:'من التي أقامها بطرس من الموت في يافا؟', o:['ليديا','طابيثا (دوركاس)','سفيرة','فيبي'], a:1, ex:'أقام بطرس تلميذة اسمها طابيثا، المعروفة أيضًا بدوركاس، من الموت في يافا.', ref:'أع 9:36-42'},
+ {q:'عند من أقام بطرس في يافا أيامًا كثيرة؟', o:['سمعان الدباغ','كرنيليوس قائد المئة','يوسف من الرامة','زكا العشار'], a:0, ex:'مكث بطرس في بيت سمعان رجل دبّاغ الجلود في يافا.', ref:'أع 9:43'},
+ {q:'من هو أول أممي غير يهودي آمن بواسطة بطرس؟', o:['سرجيوس بولس','كرنيليوس قائد المئة في قيصرية','بوبليوس في مالطة','ديونيسيوس الأريوباغي'], a:1, ex:'بناءً على رؤيا الملاءة، ذهب بطرس إلى قيصرية وعمّد كرنيليوس وأهل بيته، فاتحًا باب الإيمان للأمم.', ref:'أع 10:1-48'},
+ {q:'من قتله هيرودس أغريباس الأول بالسيف؟', o:['يعقوب أخو يوحنا','إستفانوس الشماس','متياس الرسول','يعقوب أسقف أورشليم'], a:0, ex:'قتل هيرودس أغريباس يعقوب أخا يوحنا بالسيف إرضاءً لليهود.', ref:'أع 12:1-2'},
+ {q:'كيف نجا بطرس من السجن الذي وضعه فيه هيرودس؟', o:['هرب متخفيًا بمساعدة السجّان','أرسل الرب ملاكه فأخرجه من السجن','دفع فدية','أُطلق سراحه بعد المحاكمة'], a:1, ex:'بينما كانت الكنيسة تصلي من أجله بلجاجة، أرسل الرب ملاكه ففكّ قيوده وأخرجه من السجن ليلًا.', ref:'أع 12:3-19'},
+ {q:'في بيت مَن ظنّت الجارية "رودا" أن بطرس كان روحًا؟', o:['بيت مريم أم يوحنا مرقس','بيت سمعان الدباغ','بيت كرنيليوس','بيت يعقوب'], a:0, ex:'بعد خروجه من السجن، ذهب بطرس إلى بيت مريم أم يوحنا الملقب مرقس، فظنته الجارية رودا خيالًا لفرط دهشتها.', ref:'أع 12:12-15'},
+ {q:'في أي مدينة وبّخ بولس بطرس على تراجعه عن مؤاكلة المؤمنين من الأمم؟', o:['أورشليم','أنطاكية','قيصرية','دمشق'], a:1, ex:'حين جاء بطرس إلى أنطاكية وتراجع عن الأكل مع الأمم خوفًا من المتهودين، قاومه بولس مواجهةً.', ref:'غلا 2:11-14'},
+ {q:'ماذا طلب بطرس في مجمع أورشليم بخصوص الأمم الراجعين إلى الإيمان؟', o:['إلزامهم بالختان','عدم وضع نير الناموس عليهم','منعهم من دخول الكنيسة','تأجيل قرارهم'], a:1, ex:'وقف بطرس في المجمع وتكلم بألا يوضع نير من عادات الناموس على الأمم الداخلين إلى الإيمان.', ref:'أع 15:7-11'},
+],
+pb:[
+ {q:'فيلبس المبشّر كان أحد كم شماسًا اختارتهم الكنيسة الأولى؟', o:['الاثني عشر','السبعة','الاثنين والسبعين','الأربعة'], a:1, ex:'كان فيلبس أحد السبعة الذين اختارتهم الكنيسة لخدمة الموائد، ثم صار مبشّرًا بارزًا.', ref:'أع 6:5'},
+ {q:'من عمّده فيلبس في طريق غزة؟', o:['سرجيوس بولس','الخصي الحبشي (خصي كنداكة)','كرنيليوس','بوبليوس'], a:1, ex:'التقى فيلبس بخصي حبشي، خادم كنداكة ملكة الحبشة، وشرح له سفر إشعياء وعمّده، فحمل الإيمان إلى بلاده.', ref:'أع 8:26-39'},
+ {q:'في أي مدينة "وُجد" فيلبس بعد عماد الخصي الحبشي؟', o:['أشدود','قيصرية','يافا','عسقلان'], a:0, ex:'خطفه روح الرب فوُجد بعد ذلك في أشدود، وأخذ يكرز في كل المدن حتى قيصرية.', ref:'أع 8:40'},
+ {q:'أين استقرّ فيلبس أخيرًا، وكان له أربع بنات عذارى يتنبأن؟', o:['أنطاكية','قيصرية','أفسس','دمشق'], a:1, ex:'استقر فيلبس في قيصرية، وكان له أربع بنات عذارى نبيّات.', ref:'أع 21:8-9'},
+ {q:'من استضاف فيلبس في بيته في قيصرية بعد رحلة بولس الثالثة؟', o:['برنابا','بولس الرسول ورفقاؤه','بطرس الرسول','تيطس'], a:1, ex:'نزل بولس ورفقاؤه في بيت فيلبس المبشر بقيصرية أيامًا كثيرة قبل صعوده إلى أورشليم وسجنه.', ref:'أع 21:8-10'},
+ {q:'ما كان اسم برنابا الأصلي؟', o:['شاول','يوسف','يوحنا','سمعان'], a:1, ex:'كان اسمه الأصلي يوسف، ولقّبه الرسل "برنابا" أي "ابن الوعظ".', ref:'أع 4:36'},
+ {q:'من أي جنس ومن أي جزيرة كان برنابا؟', o:['لاويّ من جزيرة قبرص','يهودي من روما','أممي من كريت','سامري من السامرة'], a:0, ex:'كان برنابا لاويًا ثريًا، قبرصي الجنس، باع حقله وقدّم ثمنه للرسل.', ref:'أع 4:36-37'},
+ {q:'من أحضره برنابا إلى الرسل في أورشليم مدافعًا عن إيمانه؟', o:['فيلبس','شاول (بولس)','تيطس','أبلوس'], a:1, ex:'لما كان التلاميذ يخافون شاول ولا يصدقون أنه تلميذ، أخذه برنابا وأحضره إلى الرسل وحدّثهم عن إيمانه.', ref:'أع 9:26-27'},
+ {q:'من أي مدينة أحضر برنابا شاول إلى أنطاكية ليخدما معًا؟', o:['قيصرية','طرسوس','دمشق','لدة'], a:1, ex:'ذهب برنابا إلى طرسوس وأحضر شاول إلى أنطاكية، وعملا معًا سنة كاملة يعلمان جمعًا غفيرًا.', ref:'أع 11:25-26'},
+ {q:'مع من حمل برنابا معونة المجاعة إلى إخوة اليهودية في أورشليم؟', o:['مع بولس (شاول)','مع فيلبس','مع سيلا','مع تيطس'], a:0, ex:'حمل برنابا وشاول الأموال التي جمعتها كنيسة أنطاكية إلى إخوتهم في أورشليم إبان مجاعة تنبأ بها أغابوس.', ref:'أع 11:27-30'},
+ {q:'إلى أين أخذ برنابا يوحنا مرقس بعد افتراقه عن بولس؟', o:['قبرص','آسيا','مكدونية','كريت'], a:0, ex:'بعد الخلاف على مرقس، أقلع برنابا معه إلى قبرص، وطأة برنابا الأولى ومسقط رأسه.', ref:'أع 15:39'},
+],
+};
+Q.mix = [...Q.j1, ...Q.j23, ...Q.peter, ...Q.pb];
+
+const PAIRS = [
+ {p:'اسطفانوس / أغابوس', c:'أورشليم'},
+ {p:'حنانيا / يهوذا الدمشقي', c:'دمشق'},
+ {p:'كرنيليوس / فيلبس المبشر', c:'قيصرية'},
+ {p:'طابيثا / سمعان الدباغ', c:'يافا'},
+ {p:'سرجيوس بولس', c:'قبرص'},
+ {p:'تكلا', c:'أيقونية'},
+ {p:'تيموثاوس / لوئيس', c:'لسترة'},
+ {p:'ليديا / أبفرودتس', c:'فيلبي'},
+ {p:'أكيلا وبرسكيلا', c:'كورنثوس'},
+ {p:'تيطس', c:'كريت'},
+ {p:'بوبليوس', c:'مالطة'},
+ {p:'فيبي', c:'كنخريا'},
+];
+
+const J1_ORDER = ['أنطاكية سورية','سلوكية','سلاميس (قبرص)','بافوس (قبرص)','برجة بمفيلية','أنطاكية بيسيدية','أيقونية','لسترة','دربة'];
+
+const CATCH_WORDS = ['أنطاكية','قبرص','سلاميس','بافوس','بمفيلية','أيقونية','لسترة','دربة','أورشليم','دمشق','قيصرية','يافا','السامرة','ترواس','فيلبي','تسالونيكي','بيرية','أثينا','كورنثوس','أفسس','مالطة','كريت','كنخريا','غزة','أشدود'];
+
+/* ======================= STATE / STORAGE ======================= */
+let state = { screen:'home', catId:null, order:[], idx:0, score:0, streak:0, correctCount:0, answered:false };
+
+async function getBest(key){
+  try{ const r = await window.storage.get('best:'+key); return r ? Number(r.value) : 0; }
+  catch(e){ return 0; }
+}
+async function setBest(key, val){
+  try{ const cur = await getBest(key); if(val > cur) await window.storage.set('best:'+key, String(val)); }
+  catch(e){ /* ignore */ }
+}
+
+/* ======================= RENDER HELPERS ======================= */
+const app = document.getElementById('app');
+
+function shuffle(arr){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+
+function svgCompass(){
+  return '<svg class="compass" viewBox="0 0 100 100" fill="none">'+
+    '<circle cx="50" cy="50" r="46" stroke="#c9a24b" stroke-width="2"/>'+
+    '<circle cx="50" cy="50" r="38" stroke="#e7c877" stroke-width="1" stroke-dasharray="2 6"/>'+
+    '<path d="M50 12 L58 50 L50 88 L42 50 Z" fill="#c9a24b" opacity="0.85"/>'+
+    '<path d="M12 50 L50 42 L88 50 L50 58 Z" fill="#e7c877" opacity="0.6"/>'+
+    '<circle cx="50" cy="50" r="4" fill="#f3e7cd"/>'+
+  '</svg>';
+}
+
+function heroRoute(){
+  return '<div class="route-wrap"><svg viewBox="0 0 560 90">'+
+    '<path class="route-path" d="M20,60 C100,10 160,80 240,40 S380,15 440,55 S520,70 540,30" />'+
+    '<circle class="route-dot" cx="20" cy="60" r="4"/>'+
+    '<circle class="route-dot" cx="240" cy="40" r="4"/>'+
+    '<circle class="route-dot" cx="440" cy="55" r="4"/>'+
+    '<circle class="route-dot" cx="540" cy="30" r="4"/>'+
+    '<text class="route-city" x="8" y="78">أنطاكية</text>'+
+    '<text class="route-city" x="212" y="30">قبرص</text>'+
+    '<text class="route-city" x="410" y="72">أيقونية</text>'+
+    '<text class="route-city" x="512" y="20">لسترة</text>'+
+  '</svg></div>';
+}
+
+/* ======================= SCREENS ======================= */
+async function renderHome(){
+  state.screen='home';
+  let cardsHtml = '';
+  for(const c of CATS){
+    const best = await getBest(c.id);
+    cardsHtml += `
+      <div class="card" tabindex="0" role="button" data-cat="${c.id}">
+        ${best>0 ? `<div class="best">🌟 أفضل نتيجة: ${best}</div>` : ''}
+        <span class="tag">${c.icon} ${c.tag}</span>
+        <h3>${c.title}</h3>
+        <p>${c.desc}</p>
+        <div class="meta">${Q[c.id].length} سؤال · ابدأ التحدي ←</div>
+      </div>`;
+  }
+
+  app.innerHTML = `
+    <div class="hero">
+      ${svgCompass()}
+      <div class="eyebrow">سفر أعمال الرسل</div>
+      <h1>رحلة الإيمان</h1>
+      <p class="sub">تعرّف على محطات رحلات معلمنا بولس الرسول، وخدمة بطرس وفيلبس وبرنابا، عبر تحديات وألعاب ممتعة.</p>
+      ${heroRoute()}
+    </div>
+
+    <div class="grid">
+      <div class="card" tabindex="0" role="button" id="go-study" style="border-color:var(--teal); background:linear-gradient(160deg,#eaf5ee,#d9ecdf);">
+        <span class="tag" style="background:var(--teal);">📖 مرجع سريع</span>
+        <h3>اطّلع على المعلومات قبل اللعب</h3>
+        <p>كل الأحداث والشخصيات والأماكن في نقاط مبسطة — راجعها قبل التحدي أو الألعاب.</p>
+        <div class="meta">افتح المرجع ←</div>
+      </div>
+      <div class="card" tabindex="0" role="button" id="go-board" style="border-color:var(--gold); background:linear-gradient(160deg,#f6ecd2,#ecdcb2);">
+        <span class="tag">🎲 لعبة اللوح الكبرى</span>
+        <h3>لعبة جماعية بالنرد والبطاقات</h3>
+        <p>من 2 إلى 4 لاعبين — تحرّكوا على اللوحة، واجمعوا نقاطًا من بطاقات الشخصيات والتحديات.</p>
+        <div class="meta">العب مع أصحابك ←</div>
+      </div>
+    </div>
+
+    <div class="section-title"><h2>اختر بابك</h2><div class="line"></div></div>
+    <div class="grid">${cardsHtml}</div>
+
+    <div class="section-title"><h2>ألعاب تفاعلية</h2><div class="line"></div></div>
+    <div class="grid">
+      <div class="card" tabindex="0" role="button" id="go-catch">
+        <span class="tag">🎣 حركة وسرعة</span>
+        <h3>اصطد المدينة الصحيحة!</h3>
+        <p>مدن تتساقط من السفينة إلى البحر — اضغط على المدينة المطلوبة بسرعة قبل أن تغرق، واحذر الفخاخ الخاطئة!</p>
+        <div class="meta">3 قلوب · العب الآن ←</div>
+      </div>
+      <div class="card" tabindex="0" role="button" id="go-order">
+        <span class="tag">🗺️ ترتيب</span>
+        <h3>رتّب الرحلة الأولى</h3>
+        <p>رتّب محطات الرحلة التبشيرية الأولى لبولس الرسول على خريطة تفاعلية بالترتيب الصحيح.</p>
+        <div class="meta">${J1_ORDER.length} محطات · العب الآن ←</div>
+      </div>
+      <div class="card" tabindex="0" role="button" id="go-match">
+        <span class="tag">🧩 مطابقة</span>
+        <h3>من أين هو؟</h3>
+        <p>طابق كل شخصية بالمدينة التي ارتبطت بها في رحلات الإيمان.</p>
+        <div class="meta">${PAIRS.length} أزواج · العب الآن ←</div>
+      </div>
+    </div>
+
+    <div class="footnote">من إعداد لخدمة تعليم مدارس الأحد — سفر أعمال الرسل</div>
+  `;
+
+  app.querySelectorAll('.card[data-cat]').forEach(el=>{
+    el.addEventListener('click', ()=> startQuiz(el.dataset.cat));
+    el.addEventListener('keypress', e=>{ if(e.key==='Enter') startQuiz(el.dataset.cat); });
+  });
+  document.getElementById('go-match').addEventListener('click', startMatch);
+  document.getElementById('go-order').addEventListener('click', startOrder);
+  document.getElementById('go-catch').addEventListener('click', startCatch);
+  document.getElementById('go-study').addEventListener('click', renderStudy);
+  document.getElementById('go-board').addEventListener('click', renderBoardSetup);
+}
+
+/* ---------- QUIZ ---------- */
+function startQuiz(catId){
+  state = { screen:'quiz', catId, order: shuffle(Q[catId].map((_,i)=>i)), idx:0, score:0, streak:0, correctCount:0, answered:false };
+  if(catId==='mix'){ state.order = state.order.slice(0, 16); }
+  renderQuiz();
+}
+
+function voyageBar(progress){
+  const dash = 500;
+  const offset = dash - dash*progress;
+  return `<div class="voyage"><svg viewBox="0 0 500 46">
+    <path class="voyage-track" d="M10,23 C120,-5 200,55 250,23 S380,-5 490,23"/>
+    <path class="voyage-fill" style="stroke-dasharray:${dash}; stroke-dashoffset:${offset}" d="M10,23 C120,-5 200,55 250,23 S380,-5 490,23"/>
+  </svg></div>`;
+}
+
+function renderQuiz(){
+  const list = Q[state.catId];
+  const qi = state.order[state.idx];
+  const item = list[qi];
+  const total = state.order.length;
+  const cat = CATS.find(c=>c.id===state.catId);
+  const optOrder = shuffle(item.o.map((_,i)=>i));
+
+  app.innerHTML = `
+    <div class="topbar">
+      <button class="btn-back" id="back">→ رجوع للرئيسية</button>
+      <div style="display:flex; gap:8px;">
+        <span class="pill">🔥 ${state.streak}</span>
+        <span class="pill">⭐ ${state.score}</span>
+      </div>
+    </div>
+    <div class="eyebrow" style="text-align:center;margin-bottom:6px;">${cat.title}</div>
+    ${voyageBar((state.idx)/total)}
+    <div class="qcard">
+      <div class="qmeta"><span>سؤال ${state.idx+1} من ${total}</span><span>${cat.icon}</span></div>
+      <h3>${item.q}</h3>
+      <div class="options" id="opts">
+        ${optOrder.map(oi => `<button class="opt" data-oi="${oi}">${item.o[oi]}</button>`).join('')}
+      </div>
+      <div class="explain" id="explain">
+        <b>💡 توضيح:</b> <span id="explain-text"></span>
+        <div class="ref" id="explain-ref"></div>
+      </div>
+      <div class="actions">
+        <button class="btn-primary" id="next" disabled>${state.idx+1===total ? 'عرض النتيجة' : 'التالي ←'}</button>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('back').addEventListener('click', renderHome);
+  const optsEl = document.getElementById('opts');
+  optsEl.querySelectorAll('.opt').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(state.answered) return;
+      state.answered = true;
+      const chosen = Number(btn.dataset.oi);
+      const correct = item.a;
+      optsEl.querySelectorAll('.opt').forEach(b=>{
+        b.disabled = true;
+        const oi = Number(b.dataset.oi);
+        if(oi===correct) b.classList.add('correct');
+        else if(oi===chosen) b.classList.add('wrong');
+        else b.classList.add('dim');
+      });
+      if(chosen===correct){
+        state.streak += 1;
+        state.correctCount += 1;
+        state.score += 10 + state.streak*2;
+      } else {
+        state.streak = 0;
+      }
+      document.getElementById('explain-text').textContent = item.ex;
+      document.getElementById('explain-ref').textContent = '📖 الشاهد: ' + item.ref;
+      document.getElementById('explain').classList.add('show');
+      document.getElementById('next').disabled = false;
+    });
+  });
+
+  document.getElementById('next').addEventListener('click', ()=>{
+    if(state.idx+1 < total){
+      state.idx += 1;
+      state.answered = false;
+      renderQuiz();
+    } else {
+      renderResult();
+    }
+  });
+}
+
+async function renderResult(){
+  const total = state.order.length;
+  const pct = Math.round((state.correctCount/total)*100);
+  await setBest(state.catId, state.score);
+  const best = await getBest(state.catId);
+
+  let rank, emoji;
+  if(pct>=90){ rank='بطل الإيمان — كأمانة الرسل!'; emoji='👑'; }
+  else if(pct>=70){ rank='بولس الرحّالة — معرفة راسخة'; emoji='⛵'; }
+  else if(pct>=50){ rank='خادم مثابر — استمر بالدرس'; emoji='📖'; }
+  else{ rank='تلميذ مبتدئ — راجع الدرس وحاول ثانية'; emoji='🌱'; }
+
+  app.innerHTML = `
+    <div class="result">
+      <div class="badge">${emoji}</div>
+      <h2>نتيجتك: ${state.score} نقطة</h2>
+      <div class="rank">${rank}</div>
+      <div class="stat-row">
+        <div class="stat"><div class="n">${state.correctCount}/${total}</div><div class="l">إجابات صحيحة</div></div>
+        <div class="stat"><div class="n">${pct}%</div><div class="l">نسبة الدقة</div></div>
+        <div class="stat"><div class="n">${best}</div><div class="l">أفضل نتيجة</div></div>
+      </div>
+      <div class="result-actions">
+        <button class="btn-primary" id="retry">أعد المحاولة</button>
+        <button class="btn-ghost" id="home">الرئيسية</button>
+      </div>
+    </div>
+  `;
+  document.getElementById('retry').addEventListener('click', ()=> startQuiz(state.catId));
+  document.getElementById('home').addEventListener('click', renderHome);
+}
+
+/* ---------- MATCH GAME ---------- */
+let matchState = {};
+function startMatch(){
+  const pairs = shuffle(PAIRS).slice(0, 8);
+  matchState = {
+    pairs,
+    left: shuffle(pairs.map((p,i)=>i)),
+    right: shuffle(pairs.map((p,i)=>i)),
+    selLeft:null, selRight:null,
+    solved:new Set(),
+    tries:0,
+  };
+  renderMatch();
+}
+
+function renderMatch(){
+  const {pairs,left,right,solved} = matchState;
+  app.innerHTML = `
+    <div class="topbar">
+      <button class="btn-back" id="back">→ رجوع للرئيسية</button>
+      <span class="pill">✅ ${solved.size}/${pairs.length}</span>
+    </div>
+    <div class="section-title"><h2>من أين هو؟ طابق الشخصية بالمدينة</h2><div class="line"></div></div>
+    <div class="qcard" style="margin-top:16px;">
+      <div class="match-grid">
+        <div class="match-col" id="col-left">
+          ${left.map(i => `<div class="match-item" data-side="l" data-i="${i}">${pairs[i].p}</div>`).join('')}
+        </div>
+        <div class="match-col" id="col-right">
+          ${right.map(i => `<div class="match-item" data-side="r" data-i="${i}">${pairs[i].c}</div>`).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+  document.getElementById('back').addEventListener('click', renderHome);
+
+  document.querySelectorAll('.match-item').forEach(el=>{
+    const i = Number(el.dataset.i);
+    if(matchState.solved.has(i)) el.classList.add('solved');
+  });
+
+  app.querySelectorAll('.match-item').forEach(el=>{
+    el.addEventListener('click', ()=>{
+      const i = Number(el.dataset.i);
+      const side = el.dataset.side;
+      if(matchState.solved.has(i)) return;
+      if(side==='l'){
+        document.querySelectorAll('[data-side="l"]').forEach(x=>x.classList.remove('selected'));
+        el.classList.add('selected');
+        matchState.selLeft = i;
+      } else {
+        document.querySelectorAll('[data-side="r"]').forEach(x=>x.classList.remove('selected'));
+        el.classList.add('selected');
+        matchState.selRight = i;
+      }
+      if(matchState.selLeft!==null && matchState.selRight!==null){
+        matchState.tries++;
+        if(matchState.selLeft === matchState.selRight){
+          matchState.solved.add(matchState.selLeft);
+          document.querySelectorAll('.selected').forEach(x=>{ x.classList.remove('selected'); x.classList.add('solved'); });
+          matchState.selLeft = null; matchState.selRight = null;
+          if(matchState.solved.size === pairs.length){
+            setTimeout(()=> renderMatchDone(), 400);
+          }
+        } else {
+          document.querySelectorAll('.selected').forEach(x=> x.classList.add('shake'));
+          setTimeout(()=>{
+            document.querySelectorAll('.selected').forEach(x=>{ x.classList.remove('selected'); x.classList.remove('shake'); });
+            matchState.selLeft = null; matchState.selRight = null;
+          }, 420);
+        }
+      }
+    });
+  });
+}
+
+async function renderMatchDone(){
+  const acc = Math.round((matchState.pairs.length/matchState.tries)*100);
+  await setBest('match', matchState.pairs.length*10);
+  app.innerHTML = `
+    <div class="result">
+      <div class="badge">🧩</div>
+      <h2>أحسنت! طابقت كل الأزواج</h2>
+      <div class="rank">دقتك في المحاولات: ${Math.min(acc,100)}%</div>
+      <div class="result-actions">
+        <button class="btn-primary" id="retry">جولة جديدة</button>
+        <button class="btn-ghost" id="home">الرئيسية</button>
+      </div>
+    </div>
+  `;
+  document.getElementById('retry').addEventListener('click', startMatch);
+  document.getElementById('home').addEventListener('click', renderHome);
+}
+
+/* ---------- CATCH GAME (arcade) ---------- */
+const AREA_HEIGHT = 380;
+let catchState = null;
+
+function stopCatchLoops(){
+  if(!catchState) return;
+  if(catchState.moveId) clearInterval(catchState.moveId);
+  if(catchState.spawnId) clearInterval(catchState.spawnId);
+  catchState.moveId = null; catchState.spawnId = null;
+}
+
+function pickNewTarget(){
+  let t;
+  do{ t = CATCH_WORDS[Math.floor(Math.random()*CATCH_WORDS.length)]; }
+  while(t === catchState.target);
+  catchState.target = t;
+  const tEl = document.getElementById('target-pill');
+  if(tEl) tEl.textContent = '🎯 اصطد: ' + t;
+}
+
+function startCatch(){
+  catchState = {
+    items:[], nextId:1, target:'', score:0, lives:3,
+    speed:0.55, spawnEvery:1250, moveId:null, spawnId:null, ended:false,
+  };
+  renderCatchScreen();
+  pickNewTarget();
+  catchState.moveId = setInterval(catchTick, 30);
+  catchState.spawnId = setInterval(spawnDrop, catchState.spawnEvery);
+  spawnDrop();
+}
+
+function renderCatchScreen(){
+  app.innerHTML = `
+    <div class="topbar">
+      <button class="btn-back" id="back">→ رجوع للرئيسية</button>
+      <div style="display:flex; gap:8px;">
+        <span class="hearts" id="hearts">❤️❤️❤️</span>
+        <span class="pill" id="score-pill">⭐ 0</span>
+      </div>
+    </div>
+    <div class="target-pill" id="target-pill">🎯 اصطد: ...</div>
+    <div class="catch-area" id="catch-area"></div>
+    <div class="catch-tip">اضغط على المدينة المطلوبة فوق قبل أن تسقط في البحر — احذر الأسماء الخاطئة!</div>
+  `;
+  document.getElementById('back').addEventListener('click', ()=>{ stopCatchLoops(); renderHome(); });
+}
+
+function spawnDrop(){
+  if(!catchState || catchState.ended) return;
+  const area = document.getElementById('catch-area');
+  if(!area) return;
+  const isTarget = Math.random() < 0.4;
+  const word = isTarget ? catchState.target : CATCH_WORDS[Math.floor(Math.random()*CATCH_WORDS.length)];
+  const id = catchState.nextId++;
+  const leftPct = 10 + Math.random()*80;
+  const el = document.createElement('div');
+  el.className = 'drop';
+  el.textContent = '📜 ' + word;
+  el.style.left = leftPct + '%';
+  el.style.top = '-40px';
+  area.appendChild(el);
+  const item = { id, el, top:-40, word, isTarget: (word===catchState.target) };
+  catchState.items.push(item);
+  el.addEventListener('click', ()=> handleDropClick(item));
+  catchState.speed = Math.min(catchState.speed + 0.01, 2.2);
+}
+
+function popScore(x, y, text, good){
+  const area = document.getElementById('catch-area');
+  if(!area) return;
+  const pop = document.createElement('div');
+  pop.className = 'pop-score ' + (good ? 'good' : 'bad');
+  pop.textContent = text;
+  pop.style.left = x + 'px';
+  pop.style.top = y + 'px';
+  area.appendChild(pop);
+  setTimeout(()=> pop.remove(), 720);
+}
+
+function removeItem(item){
+  const idx = catchState.items.findIndex(i=>i.id===item.id);
+  if(idx>-1) catchState.items.splice(idx,1);
+  item.el.remove();
+}
+
+function handleDropClick(item){
+  if(!catchState || catchState.ended) return;
+  if(!catchState.items.find(i=>i.id===item.id)) return;
+  const x = item.el.offsetLeft, y = item.top;
+  if(item.isTarget){
+    const gain = 10;
+    catchState.score += gain;
+    popScore(x, y, '+'+gain, true);
+    removeItem(item);
+    document.getElementById('score-pill').textContent = '⭐ ' + catchState.score;
+    pickNewTarget();
+  } else {
+    item.el.classList.add('wrong-flash');
+    popScore(x, y, '−1 ❤️', false);
+    loseLife();
+    setTimeout(()=> removeItem(item), 150);
+  }
+}
+
+function loseLife(){
+  catchState.lives -= 1;
+  const heartsEl = document.getElementById('hearts');
+  if(heartsEl){
+    const full = '❤️'.repeat(Math.max(catchState.lives,0));
+    const dead = '<span class="dead">🖤</span>'.repeat(3-Math.max(catchState.lives,0));
+    heartsEl.innerHTML = full + dead;
+  }
+  if(catchState.lives <= 0) endCatch();
+}
+
+function catchTick(){
+  if(!catchState || catchState.ended) return;
+  for(const item of [...catchState.items]){
+    item.top += catchState.speed;
+    item.el.style.top = item.top + 'px';
+    if(item.top > AREA_HEIGHT){
+      const wasTarget = item.isTarget;
+      removeItem(item);
+      if(wasTarget){
+        popScore(item.el.offsetLeft||40, AREA_HEIGHT-30, 'غرقت! −1 ❤️', false);
+        loseLife();
+        if(!catchState.ended) pickNewTarget();
+      }
+    }
+  }
+}
+
+async function endCatch(){
+  if(!catchState || catchState.ended) return;
+  catchState.ended = true;
+  stopCatchLoops();
+  await setBest('catch', catchState.score);
+  const best = await getBest('catch');
+  app.innerHTML = `
+    <div class="result">
+      <div class="badge">🎣</div>
+      <h2>انتهت اللعبة! نتيجتك: ${catchState.score}</h2>
+      <div class="rank">أفضل نتيجة سابقة: ${best}</div>
+      <div class="result-actions">
+        <button class="btn-primary" id="retry">حاول مجددًا</button>
+        <button class="btn-ghost" id="home">الرئيسية</button>
+      </div>
+    </div>
+  `;
+  document.getElementById('retry').addEventListener('click', startCatch);
+  document.getElementById('home').addEventListener('click', renderHome);
+}
+
+/* ======================= ORDER GAME (map-based) ======================= */
+let orderState = {};
+function startOrder(){
+  orderState = {
+    pool: shuffle(J1_ORDER.map((c,i)=>i)),
+    used: [],
+    points: null,
+  };
+  renderOrder();
+}
+
+function mapPathD(){
+  return 'M30,270 C120,60 190,290 300,150 S 430,40 500,160 S 560,260 580,120';
+}
+
+function renderOrder(){
+  const {pool, used, points} = orderState;
+  const ORDER = J1_ORDER;
+  const done = points !== null;
+
+  app.innerHTML = `
+    <div class="topbar">
+      <button class="btn-back" id="back">→ رجوع للرئيسية</button>
+      <span class="pill">🗺️ ${used.length}/${ORDER.length}</span>
+    </div>
+    <div class="section-title"><h2>${done ? 'نتيجة الترتيب' : 'اضغط على المحطات بترتيبها الصحيح على الخريطة'}</h2><div class="line"></div></div>
+    <div class="map-wrap" id="map-wrap">
+      <svg class="map-svg" viewBox="0 0 600 320" preserveAspectRatio="none">
+        <path id="map-path" class="map-route" d="${mapPathD()}" />
+      </svg>
+      <div class="map-pins" id="map-pins"></div>
+      <div class="ship-marker" id="ship-marker">⛵</div>
+    </div>
+    <div class="qcard" style="padding:18px 18px;">
+      <div class="order-pool" id="pool">
+        ${done ? '' : pool.map(i => `<button class="chip ${used.includes(i)?'used':''}" data-i="${i}" ${used.includes(i)?'disabled':''}>${ORDER[i]}</button>`).join('')}
+      </div>
+      ${done ? `
+        <div class="stat-row" style="margin-bottom:4px;">
+          <div class="stat"><div class="n">${orderState.correctCount}/${ORDER.length}</div><div class="l">بالمكان الصحيح</div></div>
+          <div class="stat"><div class="n">${points}</div><div class="l">النقاط</div></div>
+          <div class="stat"><div class="n">${orderState.best}</div><div class="l">أفضل نتيجة</div></div>
+        </div>
+        <div class="actions" style="justify-content:center;">
+          <button class="btn-primary" id="retry">حاول مجددًا</button>
+          <button class="btn-ghost" id="home">الرئيسية</button>
+        </div>
+      ` : `
+        <div class="actions">
+          <button class="btn-ghost" id="check" ${used.length<ORDER.length ? 'disabled' : ''}>تحقق من الترتيب</button>
+        </div>
+      `}
+    </div>
+  `;
+
+  document.getElementById('back').addEventListener('click', renderHome);
+  layoutPins();
+
+  if(done){
+    document.getElementById('retry').addEventListener('click', startOrder);
+    document.getElementById('home').addEventListener('click', renderHome);
+    return;
+  }
+
+  document.getElementById('pool').querySelectorAll('.chip').forEach(el=>{
+    el.addEventListener('click', ()=>{
+      const i = Number(el.dataset.i);
+      if(orderState.used.includes(i)) return;
+      orderState.used.push(i);
+      renderOrder();
+    });
+  });
+  const checkBtn = document.getElementById('check');
+  if(checkBtn) checkBtn.addEventListener('click', checkOrder);
+}
+
+function layoutPins(){
+  const {used, points} = orderState;
+  const ORDER = J1_ORDER;
+  const N = ORDER.length;
+  const path = document.getElementById('map-path');
+  const pinsWrap = document.getElementById('map-pins');
+  const ship = document.getElementById('ship-marker');
+  if(!path || !pinsWrap) return;
+  const total = path.getTotalLength();
+  const pts = [];
+  for(let i=0;i<N;i++){
+    const t = N===1 ? 0.5 : 0.06 + (i*(0.88/(N-1)));
+    pts.push(path.getPointAtLength(total*t));
+  }
+  pinsWrap.innerHTML = '';
+  const nextIndex = used.length;
+  pts.forEach((pt,i)=>{
+    const leftPct = (pt.x/600*100)+'%';
+    const topPct = (pt.y/320*100)+'%';
+    const filledIdx = used[i];
+    const isFilled = filledIdx !== undefined;
+    let cls = 'pin';
+    let label = '';
+    if(points !== null){
+      const ok = filledIdx === i;
+      cls += ok ? ' filled ok' : ' filled bad';
+      label = `<div class="label">${ORDER[filledIdx]}</div>`;
+    } else if(isFilled){
+      cls += ' filled';
+      label = `<div class="label">${ORDER[filledIdx]}</div>`;
+    } else if(i === nextIndex){
+      cls += ' next';
+    }
+    const div = document.createElement('div');
+    div.className = cls;
+    div.style.left = leftPct;
+    div.style.top = topPct;
+    div.innerHTML = `<div class="dot">${i+1}</div>${label}`;
+    pinsWrap.appendChild(div);
+  });
+  if(ship){
+    if(used.length===0){
+      const start = path.getPointAtLength(0);
+      ship.style.left = (start.x/600*100)+'%';
+      ship.style.top = (start.y/320*100)+'%';
+    } else {
+      const shipIdx = Math.min(used.length-1, pts.length-1);
+      const p = pts[shipIdx];
+      ship.style.left = (p.x/600*100)+'%';
+      ship.style.top = (p.y/320*100)+'%';
+    }
+  }
+}
+
+async function checkOrder(){
+  const {used} = orderState;
+  const ORDER = J1_ORDER;
+  let correctCount = 0;
+  ORDER.forEach((_,i)=>{ if(used[i]===i) correctCount++; });
+  const points = Math.round((correctCount/ORDER.length)*100);
+  await setBest('order', points);
+  orderState.points = points;
+  orderState.correctCount = correctCount;
+  orderState.best = await getBest('order');
+  renderOrder();
+}
+
+/* ======================= STUDY / REFERENCE SCREEN ======================= */
+function renderStudy(){
+  const catsHtml = CATS.filter(c=>c.id!=='mix').map(c=>{
+    const items = Q[c.id].map(item => `<li><b>${item.q}</b><br>${item.ex} <span class="refspan">📖 ${item.ref}</span></li>`).join('');
+    return `
+      <div class="acc">
+        <div class="acc-head" data-acc>${c.icon} ${c.title} <span class="arrow">▾</span></div>
+        <div class="acc-body"><div class="acc-body-inner"><ul>${items}</ul></div></div>
+      </div>`;
+  }).join('');
+
+  const pairsHtml = PAIRS.map(p => `<div class="pairs-line"><b>${p.p}</b><span>${p.c}</span></div>`).join('');
+
+  app.innerHTML = `
+    <div class="topbar">
+      <button class="btn-back" id="back">→ رجوع للرئيسية</button>
+    </div>
+    <div class="section-title"><h2>📖 مرجع سريع — اقرأ قبل اللعب</h2><div class="line"></div></div>
+    <p class="sub" style="text-align:right; max-width:100%;">اضغط على أي باب لعرض كل معلوماته في نقاط مبسطة مع الشاهد الكتابي.</p>
+    ${catsHtml}
+    <div class="acc">
+      <div class="acc-head" data-acc>🗺️ شخصيات وأماكن (مرجع المطابقة) <span class="arrow">▾</span></div>
+      <div class="acc-body"><div class="acc-body-inner">${pairsHtml}</div></div>
+    </div>
+  `;
+  document.getElementById('back').addEventListener('click', renderHome);
+  app.querySelectorAll('[data-acc]').forEach(head=>{
+    head.addEventListener('click', ()=>{
+      const body = head.nextElementSibling;
+      const opening = !body.classList.contains('open');
+      head.classList.toggle('open', opening);
+      body.classList.toggle('open', opening);
+    });
+  });
+}
+
+/* ======================= BOARD GAME (dice + cards) ======================= */
+const TOKENS = ['⛵','🚢','🛶','⚓'];
+const PLAYER_COLORS = ['#e7c877','#9fd3c7','#e79f9f','#a7c4e7'];
+
+const STATIONS = [
+ {name:'أنطاكية سورية', type:'start'},
+ {name:'سلوكية', type:'city'},
+ {name:'سلاميس', type:'char'},
+ {name:'بافوس', type:'challenge'},
+ {name:'برجة بمفيلية', type:'city'},
+ {name:'أنطاكية بيسيدية', type:'char'},
+ {name:'أيقونية', type:'challenge'},
+ {name:'لسترة', type:'city'},
+ {name:'دربة', type:'char'},
+ {name:'طرسوس', type:'challenge'},
+ {name:'أورشليم', type:'city'},
+ {name:'السامرة', type:'char'},
+ {name:'يافا', type:'challenge'},
+ {name:'قيصرية', type:'city'},
+ {name:'ترواس', type:'char'},
+ {name:'فيلبي', type:'challenge'},
+ {name:'تسالونيكي', type:'city'},
+ {name:'أثينا', type:'char'},
+ {name:'كورنثوس', type:'challenge'},
+ {name:'أفسس', type:'city'},
+];
+
+const CHAR_CARDS = [
+ {name:'برنابا', fact:'لاويّ قبرصي، اسمه الأصلي يوسف، لقّبه الرسل "ابن الوعظ"، ورافق بولس في رحلته الأولى.'},
+ {name:'سرجيوس بولس', fact:'والي قبرص الروماني الذي آمن في بافوس بعد ما رأى عمى عليم الساحر.'},
+ {name:'عليم الساحر', fact:'ساحر يهودي في بافوس ضُرب بالعمى لمقاومته كرازة بولس.'},
+ {name:'تكلا', fact:'تلميذة من أيقونية يذكر التقليد أنها آمنت بكرازة بولس فيها.'},
+ {name:'سيلا', fact:'رافق بولس في رحلته الثانية بعد افتراقه عن برنابا.'},
+ {name:'تيموثاوس', fact:'شاب من لسترة، ربّته جدته لوئيس وأمه أفنيكي، وضمّه بولس لفريق الخدمة.'},
+ {name:'لوقا الإنجيلي', fact:'انضمّ إلى رحلة بولس في ترواس، وكتب سفر أعمال الرسل.'},
+ {name:'ليديا', fact:'بائعة أرجوان في فيلبي، أول مؤمنة مذكورة في أوروبا.'},
+ {name:'أكيلا وبرسكيلا', fact:'زوجان صانعا خيام، عملا مع بولس في كورنثوس.'},
+ {name:'كرنيليوس', fact:'قائد مئة روماني في قيصرية، أول أممي آمن بواسطة بطرس.'},
+ {name:'حنانيا وسفيرة', fact:'كذبا على الروح القدس بخصوص ثمن حقلهما فماتا فورًا.'},
+ {name:'سيمون الساحر', fact:'حاول شراء موهبة وضع الأيدي بالمال في السامرة.'},
+ {name:'طابيثا', fact:'تلميذة في يافا أقامها بطرس من الموت.'},
+ {name:'فيلبس المبشّر', fact:'أحد الشمامسة السبعة، عمّد الخصي الحبشي في طريق غزة.'},
+];
+
+let board = null;
+
+function renderBoardSetup(){
+  app.innerHTML = `
+    <div class="topbar">
+      <button class="btn-back" id="back">→ رجوع للرئيسية</button>
+    </div>
+    <div class="section-title"><h2>🎲 لعبة اللوح الكبرى</h2><div class="line"></div></div>
+    <div class="qcard">
+      <h3 style="font-size:17px;">كم عدد اللاعبين؟</h3>
+      <p style="color:#6a5a45; font-size:13px; margin-top:-8px;">كل لاعب يتحرك بالنرد على اللوحة، ويجمع نقاطًا من بطاقات الشخصيات والتحديات.</p>
+      <div class="player-pick" id="pp">
+        ${[2,3,4].map(n=>`<button class="chip" data-n="${n}">${n} لاعبين</button>`).join('')}
+      </div>
+      <div class="actions" style="justify-content:center; margin-top:26px;">
+        <button class="btn-primary" id="start-board" disabled>ابدأ اللعبة</button>
+      </div>
+    </div>
+  `;
+  document.getElementById('back').addEventListener('click', renderHome);
+  let chosen = null;
+  document.getElementById('pp').querySelectorAll('.chip').forEach(el=>{
+    el.addEventListener('click', ()=>{
+      document.querySelectorAll('#pp .chip').forEach(x=>x.classList.remove('sel'));
+      el.classList.add('sel');
+      chosen = Number(el.dataset.n);
+      document.getElementById('start-board').disabled = false;
+    });
+  });
+  document.getElementById('start-board').addEventListener('click', ()=>{
+    if(chosen) initBoard(chosen);
+  });
+}
+
+function initBoard(n){
+  board = {
+    n,
+    players: Array.from({length:n}, (_,i)=>({ name:'اللاعب '+(i+1), token:TOKENS[i], color:PLAYER_COLORS[i], pos:0, coins:0 })),
+    current: 0,
+    phase:'ready', // ready | moving | resolving
+    lastRoll: null,
+    log: 'بالتوفيق! اضغط 🎲 لبدء أول دور.',
+  };
+  renderBoard();
+}
+
+function perimeterCells(G){
+  const cells=[];
+  for(let c=0;c<G;c++) cells.push({row:1,col:c+1});
+  for(let r=1;r<G;r++) cells.push({row:r+1,col:G});
+  for(let c=G-2;c>=0;c--) cells.push({row:G,col:c+1});
+  for(let r=G-2;r>=1;r--) cells.push({row:r+1,col:1});
+  return cells;
+}
+
+function typeLabel(type){
+  if(type==='char') return '👤';
+  if(type==='challenge') return '❓';
+  if(type==='start') return '🚩';
+  return '';
+}
+
+function renderBoard(){
+  const G = 6;
+  const cellsPos = perimeterCells(G);
+  const p = board.players[board.current];
+
+  let stationsHtml = '';
+  STATIONS.forEach((st,i)=>{
+    const pos = cellsPos[i];
+    const isCorner = (i===0);
+    const tokensHere = board.players.filter(pl=>pl.pos===i).map(pl=>`<span>${pl.token}</span>`).join('');
+    stationsHtml += `
+      <div class="station ${st.type==='start'?'corner':st.type}" style="grid-row:${pos.row}; grid-column:${pos.col};">
+        <div class="stype">${typeLabel(st.type)}</div>
+        <div>${st.name}</div>
+        <div class="tokens">${tokensHere}</div>
+      </div>`;
+  });
+
+  const scoreboardHtml = board.players.map((pl,i)=>`
+    <div class="score-card ${i===board.current?'active':''}">
+      <div class="nm">${pl.token} ${pl.name}</div>
+      <div class="co">${pl.coins} 🪙</div>
+    </div>`).join('');
+
+  app.innerHTML = `
+    <div class="topbar">
+      <button class="btn-back" id="back">→ رجوع للرئيسية</button>
+      <span class="player-badge">${p.token} دور: ${p.name}</span>
+    </div>
+    <div class="board-grid">
+      ${stationsHtml}
+      <div class="board-center" style="grid-row:2/6; grid-column:2/6;">
+        <h3>⛵ رحلة الإيمان</h3>
+        <div class="dice-face" id="dice-face">${board.lastRoll ?? '🎲'}</div>
+        <button class="dice-btn" id="dice-btn" ${board.phase!=='ready' ? 'disabled' : ''}>🎲</button>
+        <div class="event-log" id="event-log">${board.log}</div>
+      </div>
+    </div>
+    <div class="scoreboard">${scoreboardHtml}</div>
+    <div id="modal-zone"></div>
+  `;
+  document.getElementById('back').addEventListener('click', renderHome);
+  const diceBtn = document.getElementById('dice-btn');
+  if(diceBtn) diceBtn.addEventListener('click', rollDice);
+}
+
+function rollDice(){
+  if(board.phase!=='ready') return;
+  board.phase='moving';
+  const roll = 1+Math.floor(Math.random()*6);
+  board.lastRoll = roll;
+  const p = board.players[board.current];
+  const steps = roll;
+  let moved = 0;
+  document.getElementById('dice-btn').disabled = true;
+
+  const stepInterval = setInterval(()=>{
+    p.pos = (p.pos+1) % STATIONS.length;
+    moved++;
+    document.getElementById('dice-face').textContent = roll;
+    // redraw only tokens quickly by re-rendering board (cheap enough at 20 cells)
+    renderBoard();
+    document.getElementById('dice-btn').disabled = true;
+    if(moved>=steps){
+      clearInterval(stepInterval);
+      resolveStation();
+    }
+  }, 260);
+}
+
+function resolveStation(){
+  const p = board.players[board.current];
+  const st = STATIONS[p.pos];
+  board.phase = 'resolving';
+
+  if(st.type==='city' || st.type==='start'){
+    p.coins += 2;
+    board.log = `${p.token} ${p.name} وصل إلى ${st.name} (+2 🪙)`;
+    renderBoard();
+    endTurnSoon();
+  } else if(st.type==='char'){
+    const card = CHAR_CARDS[Math.floor(Math.random()*CHAR_CARDS.length)];
+    p.coins += 5;
+    board.log = `${p.token} ${p.name} في ${st.name} — بطاقة شخصية! (+5 🪙)`;
+    renderBoard();
+    showModal(`
+      <div class="qcard">
+        <div class="qmeta"><span>👤 بطاقة شخصية</span><span>+5 🪙</span></div>
+        <h3>${card.name}</h3>
+        <p style="color:#5a4a37; font-size:14px; line-height:1.8;">${card.fact}</p>
+        <div class="actions"><button class="btn-primary" id="modal-continue">استمر ←</button></div>
+      </div>
+    `, endTurn);
+  } else if(st.type==='challenge'){
+    const bank = Q.mix;
+    const item = bank[Math.floor(Math.random()*bank.length)];
+    const optOrder = shuffle(item.o.map((_,i)=>i));
+    board.log = `${p.token} ${p.name} في ${st.name} — بطاقة تحدٍّ!`;
+    renderBoard();
+    showModal(`
+      <div class="qcard">
+        <div class="qmeta"><span>❓ بطاقة تحدٍّ</span><span>+15 🪙</span></div>
+        <h3>${item.q}</h3>
+        <div class="options" id="modal-opts">
+          ${optOrder.map(oi => `<button class="opt" data-oi="${oi}">${item.o[oi]}</button>`).join('')}
+        </div>
+        <div class="explain" id="modal-explain">
+          <b>💡 توضيح:</b> <span>${item.ex}</span>
+          <div class="ref">📖 الشاهد: ${item.ref}</div>
+        </div>
+        <div class="actions"><button class="btn-primary" id="modal-continue" disabled>استمر ←</button></div>
+      </div>
+    `, endTurn);
+
+    const optsEl = document.getElementById('modal-opts');
+    optsEl.querySelectorAll('.opt').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const chosen = Number(btn.dataset.oi);
+        optsEl.querySelectorAll('.opt').forEach(b=>{
+          b.disabled = true;
+          const oi = Number(b.dataset.oi);
+          if(oi===item.a) b.classList.add('correct');
+          else if(oi===chosen) b.classList.add('wrong');
+          else b.classList.add('dim');
+        });
+        if(chosen===item.a){
+          p.coins += 15;
+          board.log = `${p.token} ${p.name} أجاب صحيحًا في ${st.name}! (+15 🪙)`;
+        } else {
+          board.log = `${p.token} ${p.name} أجاب خطأ في ${st.name}.`;
+        }
+        document.getElementById('modal-explain').classList.add('show');
+        document.getElementById('modal-continue').disabled = false;
+      });
+    });
+  }
+}
+
+function showModal(html, onClose){
+  const zone = document.getElementById('modal-zone');
+  zone.innerHTML = html;
+  const btn = document.getElementById('modal-continue');
+  if(btn) btn.addEventListener('click', ()=>{ zone.innerHTML=''; onClose(); });
+}
+
+function endTurnSoon(){
+  setTimeout(endTurn, 700);
+}
+
+async function endTurn(){
+  // check winner condition: after everyone has had a turn past a coin threshold, keep playing until someone reaches 60 or a manual end
+  const p = board.players[board.current];
+  if(p.coins >= 60){
+    renderBoardResult();
+    return;
+  }
+  board.current = (board.current+1) % board.n;
+  board.phase = 'ready';
+  board.lastRoll = null;
+  board.log = `دور ${board.players[board.current].token} ${board.players[board.current].name}!`;
+  renderBoard();
+}
+
+function renderBoardResult(){
+  const sorted = [...board.players].sort((a,b)=> b.coins-a.coins);
+  const winner = sorted[0];
+  app.innerHTML = `
+    <div class="result">
+      <div class="badge">👑</div>
+      <h2>${winner.token} ${winner.name} فاز باللعبة!</h2>
+      <div class="rank">جمع ${winner.coins} 🪙 من رحلته على اللوح</div>
+      <div class="stat-row">
+        ${sorted.map(pl=>`<div class="stat"><div class="n">${pl.coins}</div><div class="l">${pl.token} ${pl.name}</div></div>`).join('')}
+      </div>
+      <div class="result-actions">
+        <button class="btn-primary" id="retry">لعبة جديدة</button>
+        <button class="btn-ghost" id="home">الرئيسية</button>
+      </div>
+    </div>
+  `;
+  document.getElementById('retry').addEventListener('click', renderBoardSetup);
+  document.getElementById('home').addEventListener('click', renderHome);
+}
+
+/* ======================= INIT ======================= */
+renderHome();
+</script>
+</body>
+</html>
